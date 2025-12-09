@@ -18,7 +18,7 @@ const createDomain = async (domainName) => {
 
 // Main interaction loop
 const main = async () => {
-  console.log('Enter the domain name:');
+  console.log("Enter the domain name:");
 
   const domainName = await $`read domainName && echo $domainName`;
   console.log(`Creating domain ${domainName}`);

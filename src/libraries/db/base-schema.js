@@ -1,5 +1,5 @@
 // external imports
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 /**
  * Common properties for all of the collections

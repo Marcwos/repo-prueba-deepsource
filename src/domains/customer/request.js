@@ -1,5 +1,5 @@
-const Joi = require('joi');
-const mongoose = require('mongoose');
+const Joi = require("joi");
+const mongoose = require("mongoose");
 
 const createSchema = Joi.object().keys({
   name: Joi.string().required(),
@@ -15,10 +15,10 @@ const idSchema = Joi.object().keys({
   id: Joi.string()
     .custom((value, helpers) => {
       if (!mongoose.Types.ObjectId.isValid(value)) {
-        return helpers.error('any.invalid');
+        return helpers.error("any.invalid");
       }
       return value;
-    }, 'ObjectId validation')
+    }, "ObjectId validation")
     .required(),
 });
 

@@ -1,4 +1,4 @@
-const logger = require('../../libraries/log/logger');
+const logger = require("../../libraries/log/logger");
 
 // Middleware to log the request.
 // Logic: by default it will log req.params and req.query if they exist.
