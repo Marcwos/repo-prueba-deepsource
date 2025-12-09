@@ -1,6 +1,6 @@
-const logger = require('../log/logger');
-const util = require('util');
-const { AppError } = require('./AppError');
+const logger = require("../log/logger");
+const util = require("util");
+const { AppError } = require("./AppError");
 
 let httpServerRef;
 
@@ -8,24 +8,24 @@ const errorHandler = {
   listenToErrorEvents: (httpServer) => {
     httpServerRef = httpServer;
 
-    process.on('uncaughtException', async (error) => {
+    process.on("uncaughtException", async (error) => {
       await errorHandler.handleError(error);
     });
 
-    process.on('unhandledRejection', async (reason) => {
+    process.on("unhandledRejection", async (reason) => {
       await errorHandler.handleError(reason);
     });
 
-    process.on('SIGTERM', async () => {
+    process.on("SIGTERM", async () => {
       logger.error(
-        'App received SIGTERM event, try to gracefully close the server'
+        "App received SIGTERM event, try to gracefully close the server",
       );
       await terminateHttpServerAndExit();
     });
 
-    process.on('SIGINT', async () => {
+    process.on("SIGINT", async () => {
       logger.error(
-        'App received SIGINT event, try to gracefully close the server'
+        "App received SIGINT event, try to gracefully close the server",
       );
       await terminateHttpServerAndExit();
     });
@@ -42,7 +42,7 @@ const errorHandler = {
     } catch (handlingError) {
       // No logger here since it might have failed
       process.stdout.write(
-        'The error handler failed. Here are the handler failure and then the origin error that it tried to handle: '
+        "The error handler failed. Here are the handler failure and then the origin error that it tried to handle: ",
       );
       process.stdout.write(JSON.stringify(handlingError));
       process.stdout.write(JSON.stringify(errorToHandle));
@@ -70,10 +70,10 @@ const normalizeError = (errorToHandle) => {
 
   const inputType = typeof errorToHandle;
   return new AppError(
-    'general-error',
+    "general-error",
     `Error Handler received a none error instance with type - ${inputType}, value - ${util.inspect(
-      errorToHandle
-    )}`
+      errorToHandle,
+    )}`,
   );
 };
 

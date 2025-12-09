@@ -1,4 +1,4 @@
-const logger = require('../../libraries/log/logger');
+const logger = require("../../libraries/log/logger");
 
 function validateRequest({ schema, isParam = false }) {
   return (req, res, next) => {

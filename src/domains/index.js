@@ -1,4 +1,4 @@
-const productRoutes = require('./product');
+const productRoutes = require("./product");
 
 const defineRoutes = async (expressRouter) => {
   productRoutes(expressRouter);

@@ -1,9 +1,9 @@
-const logger = require('../../libraries/log/logger');
+const logger = require("../../libraries/log/logger");
 
-const Model = require('./schema');
-const { AppError } = require('../../libraries/error-handling/AppError');
+const Model = require("./schema");
+const { AppError } = require("../../libraries/error-handling/AppError");
 
-const model = 'customer';
+const model = "customer";
 
 const create = async (data) => {
   try {
@@ -25,12 +25,12 @@ const search = async (query) => {
     const filter = {};
     if (keyword) {
       filter.or = [
-        { name: { regex: keyword, options: 'i' } },
-        { description: { regex: keyword, options: 'i' } },
+        { name: { regex: keyword, options: "i" } },
+        { description: { regex: keyword, options: "i" } },
       ];
     }
     const items = await Model.find(filter);
-    logger.info('search(): filter and count', {
+    logger.info("search(): filter and count", {
       filter,
       count: items.length,
     });

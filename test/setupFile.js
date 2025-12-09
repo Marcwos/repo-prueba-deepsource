@@ -1,6 +1,9 @@
 const { beforeAll, afterAll } = require("@jest/globals");
 const mongoose = require("mongoose");
-const { connectWithMongoDb, disconnectWithMongoDb } = require("../src/libraries/db");
+const {
+  connectWithMongoDb,
+  disconnectWithMongoDb,
+} = require("../src/libraries/db");
 
 beforeAll(async () => {
   await connectWithMongoDb();

@@ -1,6 +1,6 @@
-const express = require('express');
-const logger = require('../../libraries/log/logger');
-const { AppError } = require('../../libraries/error-handling/AppError');
+const express = require("express");
+const logger = require("../../libraries/log/logger");
+const { AppError } = require("../../libraries/error-handling/AppError");
 
 const {
   create,
@@ -8,20 +8,20 @@ const {
   getById,
   updateById,
   deleteById,
-} = require('./service');
+} = require("./service");
 
-const { createSchema, updateSchema, idSchema } = require('./request');
-const { validateRequest } = require('../../middlewares/request-validate');
-const { logRequest } = require('../../middlewares/log');
+const { createSchema, updateSchema, idSchema } = require("./request");
+const { validateRequest } = require("../../middlewares/request-validate");
+const { logRequest } = require("../../middlewares/log");
 
-const model = 'Customer';
+const model = "Customer";
 
 // CRUD for entity
 const routes = () => {
   const router = express.Router();
   logger.info(`Setting up routes for ${model}`);
 
-  router.get('/', logRequest({}), async (req, res, next) => {
+  router.get("/", logRequest({}), async (req, res, next) => {
     try {
       // TODO: Add pagination and filtering
       const items = await search(req.query);
@@ -32,7 +32,7 @@ const routes = () => {
   });
 
   router.post(
-    '/',
+    "/",
     logRequest({}),
     validateRequest({ schema: createSchema }),
     async (req, res, next) => {
@@ -42,11 +42,11 @@ const routes = () => {
       } catch (error) {
         next(error);
       }
-    }
+    },
   );
 
   router.get(
-    '/:id',
+    "/:id",
     logRequest({}),
     validateRequest({ schema: idSchema, isParam: true }),
     async (req, res, next) => {
@@ -59,11 +59,11 @@ const routes = () => {
       } catch (error) {
         next(error);
       }
-    }
+    },
   );
 
   router.put(
-    '/:id',
+    "/:id",
     logRequest({}),
     validateRequest({ schema: idSchema, isParam: true }),
     validateRequest({ schema: updateSchema }),
@@ -77,11 +77,11 @@ const routes = () => {
       } catch (error) {
         next(error);
       }
-    }
+    },
   );
 
   router.delete(
-    '/:id',
+    "/:id",
     logRequest({}),
     validateRequest({ schema: idSchema, isParam: true }),
     async (req, res, next) => {
@@ -91,7 +91,7 @@ const routes = () => {
       } catch (error) {
         next(error);
       }
-    }
+    },
   );
 
   return router;
